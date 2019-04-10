@@ -20,7 +20,7 @@ class RecipeTest < Minitest::Test
 
   def test_recipe_adds_ingredients_with_quantities
     recipe_1 = Recipe.new("burger")
-    ingredient_1 = Ingredient.new("pepper", "teaspoon", 50)
+    ingredient_1 = Ingredient.new("pepper", "teaspoons", 50)
     ingredient_2 = Ingredient.new("beef", "lbm", 600)
 
     recipe_1.add_ingredient(ingredient_1, 3)
@@ -33,7 +33,7 @@ class RecipeTest < Minitest::Test
 
   def test_recipe_can_list_ingredients
     recipe_1 = Recipe.new("burger")
-    ingredient_1 = Ingredient.new("pepper", "teaspoon", 50)
+    ingredient_1 = Ingredient.new("pepper", "teaspoons", 50)
     ingredient_2 = Ingredient.new("beef", "lbm", 600)
 
     recipe_1.add_ingredient(ingredient_1, 3)
@@ -46,7 +46,7 @@ class RecipeTest < Minitest::Test
 
   def test_recipe_checks_quantity_of_ingredient_needed_for_recipe
     recipe_1 = Recipe.new("burger")
-    ingredient_1 = Ingredient.new("pepper", "teaspoon", 50)
+    ingredient_1 = Ingredient.new("pepper", "teaspoons", 50)
     ingredient_2 = Ingredient.new("beef", "lbm", 600)
 
     recipe_1.add_ingredient(ingredient_1, 3)
@@ -59,7 +59,7 @@ class RecipeTest < Minitest::Test
 
   def test_recipe_finds_total_calories_for_dish
     recipe_1 = Recipe.new("burger")
-    ingredient_1 = Ingredient.new("pepper", "teaspoon", 50)
+    ingredient_1 = Ingredient.new("pepper", "teaspoons", 50)
     ingredient_2 = Ingredient.new("beef", "lbm", 600)
 
     recipe_1.add_ingredient(ingredient_1, 3)
@@ -70,5 +70,17 @@ class RecipeTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_amount_needed_string
+    recipe_1 = Recipe.new("burger")
+    ingredient_1 = Ingredient.new("pepper", "teaspoons", 50)
+    ingredient_2 = Ingredient.new("beef", "lbm", 600)
+
+    recipe_1.add_ingredient(ingredient_1, 3)
+    recipe_1.add_ingredient(ingredient_2, 5)
+
+    expected = "3 teaspoons"
+    actual = recipe_1.amount_needed_string(ingredient_1)
+    assert_equal expected, actual
+  end
 
 end

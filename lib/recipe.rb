@@ -27,4 +27,8 @@ class Recipe
     end
   end
 
+  def amount_needed_string(ingredient)
+    "#{quantity_needed(ingredient)} #{ingredient.unit}"
+  end
+
 end
